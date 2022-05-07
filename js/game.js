@@ -1,6 +1,7 @@
 class Game{
   constructor(context) {
     this.ctx = context;
+    this.Pana = new Player();
   }
 
   _assignControls() {

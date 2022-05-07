@@ -1,4 +1,4 @@
-class Pana {
+class Player {
     constructor(x, y, width, height) {
         this.x = 200;
         this.y = 700;
