@@ -27,4 +27,5 @@ class Game{
     this._assignControls();
     this._update();
   }
+
 }
