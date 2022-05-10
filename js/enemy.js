@@ -1,11 +1,10 @@
-class Player {
-    constructor(x, y, width, height) {
+class Enemy {
+    constructor(x, y, width, height, role) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;  
-        this.lifePoints = 0;
+        this.role = role;
     }
 
 }
-
