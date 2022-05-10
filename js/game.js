@@ -11,16 +11,14 @@ class Game{
   }
 
   _drawEnemies() {
-    // this.enemyInterval = setInterval
-    this.enemies.forEach(elem => {
-      console.log(elem);
-      if (elem.role === 'good') {
-        this.ctx.drawImage(goodEnemie, elem.x, elem.y, elem.width, elem.height);
-      } else if (elem.role === 'bad') {
-        this.ctx.drawImage(badEnemie, elem.x, elem.y, elem.width, elem.height);
-      }
-    })
-  }
+    let counter = 0; 
+    this.enemyInterval = setInterval(() => {
+       for (let i = 0; i < enemies.length; i++) {	
+      counter = counter + i;
+    }
+  }, 2000);
+  console.log(counter);
+} 
 
   _assignControls() {
     // Controles del teclado

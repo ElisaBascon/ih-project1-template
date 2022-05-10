@@ -6,6 +6,5 @@ class Player {
         this.height = height;  
         this.lifePoints = 0;
     }
-
 }
 

@@ -6,3 +6,4 @@ const enemies = [
   new Enemy(250, 200, 110, 100, 'bad'),
   new Enemy(250, 200, 110, 100, 'good'),
 ]
+    

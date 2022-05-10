@@ -6,5 +6,4 @@ class Enemy {
         this.height = height;  
         this.role = role;
     }
-
 }
