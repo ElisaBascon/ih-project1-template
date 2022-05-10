@@ -1,7 +1,11 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.Pana = new Player();
+    this.pana = new Player(0, 0, 110, 110);
+  }
+
+  _drawPana() {
+    this.ctx.drawImage(pana, this.pana.x, this.pana.y, this.pana.width, this.pana.height);
   }
 
   _assignControls() {
@@ -17,7 +21,7 @@ class Game{
         default:
           break;
       }
-    });
+    });  
   }
 
   _update() {
@@ -28,5 +32,4 @@ class Game{
     this._assignControls();
     this._update();
   }
-
 }

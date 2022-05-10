@@ -17,6 +17,7 @@
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
+  background: linear-gradient(#e66465, #9198e5);
 }
 
 #lose-page {
@@ -29,7 +30,22 @@ canvas {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 50px;
+  background-color: #FFEBCD;
+  
 }
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  text-shadow: blue;
+}
+
+h3 {
+  font-family: 'Courier New', Courier, monospace;
+  color: blue;
+}
+
+
 
 /* Auxiliar classes */
 
