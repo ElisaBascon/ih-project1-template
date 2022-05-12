@@ -67,8 +67,8 @@ class Game{
     // Pinto la pantalla
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
-    const losePage = document.getElementById('next-level');
-    losePage.style = "display: flex";
+    const nextLevel = document.getElementById('next-level');
+    nextLevel.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none;"
   }
