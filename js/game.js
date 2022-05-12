@@ -3,6 +3,7 @@ class Game{
     this.ctx = context;
     this.pana = new Player(150, 590, 110, 110);
     this.enemies = enemies;
+    // this.enemies = [];
     this.enemyInterval = undefined;
     this.paintingEnemy = undefined;
     this.points = 0;
@@ -16,14 +17,14 @@ class Game{
     let currentEnemy = 0;
     this.enemyInterval = setInterval(() => { 
       this.paintingEnemy = enemies[currentEnemy];
-      currentEnemy++;
-    }, 1000);
-    if (currentEnemy >= this.enemies.length) {
+      if (currentEnemy == this.enemies.length) {
       currentEnemy = 0;
       clearInterval(this.enemyInterval);
       clearInterval(this.paintingEnemy);
       this._checkPoints();
-    }
+     }
+     currentEnemy++;
+    }, 1000);
   }
 
   // Se encargan de comprobar como va el usuario
@@ -43,7 +44,7 @@ class Game{
     if (this.points <= 2) {
       this.start()
     } 
-    else if (this.points >= 3) {
+    if (this.points >= 3) {
       this._nextLevel()
     }
   }
@@ -65,12 +66,19 @@ class Game{
     // Creas otra en HTML que sea de buen resultado
     // Paro todos los intervals
     // Pinto la pantalla
+    console.log('next level')
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
     const nextLevel = document.getElementById('next-level');
     nextLevel.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none;"
+  }
+
+  _generateEnemies() {
+    // Crear uno nuevo
+    // Asignarle random el good o bad
+    // Asignarle random 50 o 250 en la X para que sea izquierda o derecha
   }
 
   _drawEnemies() {
@@ -140,6 +148,7 @@ class Game{
   start() {
     this._assignControls();
     this._assignCurrentEnemy();
+    // LLamo a un set interval que cada X tiempo me genere un nuevo enemigo 
     this._update();
   }
 }
