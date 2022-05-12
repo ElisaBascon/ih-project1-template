@@ -6,7 +6,8 @@
 /* Basic styles, change according to your style */
 
 #start-page,
-#lose-page {
+#lose-page,
+#next-level {
   height: 700px;
   width: 400px;
   display: flex;
@@ -21,6 +22,10 @@
 }
 
 #lose-page {
+  display: none;
+}
+
+#next-level {
   display: none;
 }
 
