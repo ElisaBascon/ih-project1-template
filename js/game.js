@@ -18,6 +18,38 @@ class Game{
       this.paintingEnemy = enemies[currentEnemy];
       currentEnemy++;
     }, 1000);
+    if (currentEnemy >= this.enemies.length) {
+      currentEnemy = 0;
+      clearInterval(this.enemyInterval);
+      clearInterval(this.paintingEnemy);
+      // this._checkPoints();
+    }
+  }
+
+  // Se encargan de comprobar como va el usuario
+
+  _checkIfGameOver() {
+    // Miro los points, si < 0 = gameOver
+    // LLamo la función a la de gameOver
+  }
+
+  _checkPoints() {
+    // Si cuando acabe tengo +3, siguiente nivel
+    // Si tengo entre 0 y 3, vuelve a repetir
+    // this._nextLevel()
+  }
+
+  // Funciones de abajo: se encargan de parar el juego y printar las pantallas de resultado
+
+  _gameOver() {
+    // Para todos los intervals
+    // Pinta pantalla de game over
+  }
+
+  _nextLevel() {
+    // Creas otra en HTML que sea de buen resultado
+    // Paro todos los intervals
+    // Pinto la pantalla
   }
 
   _drawEnemies() {
@@ -37,8 +69,10 @@ class Game{
       this.points += 1;
     } else if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+    }
+    // this._checkIfGameOver()
   }
-  }
+
   checkLeft() {
     // Si lo que hay this.paintingEnemy.x < 200: posición? Izquierda?
     // Si this.paintingEnemy.role == 'good'? => puntos // 'bad' => resto puntos
@@ -46,7 +80,8 @@ class Game{
       this.points += 1;
     } else if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
-  }
+    }
+    // this._checkIfGameOver()
   }
 
 
