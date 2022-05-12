@@ -5,6 +5,7 @@ class Game{
     this.enemies = enemies;
     this.enemyInterval = undefined;
     this.paintingEnemy = undefined;
+    this.points = 0;
   }
 
   _drawPana() {
@@ -32,11 +33,20 @@ class Game{
   checkRight() {
     // Si lo que hay this.paintingEnemy: posición? Derecha?
     // Si this.paintingEnemy.role == 'good'? => puntos // 'bad' => resto puntos
+    if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'good') {
+      this.points += 1;
+    } else if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'bad') {
+      this.points -= 1;
   }
-
+  }
   checkLeft() {
     // Si lo que hay this.paintingEnemy.x < 200: posición? Izquierda?
     // Si this.paintingEnemy.role == 'good'? => puntos // 'bad' => resto puntos
+    if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'good') {
+      this.points += 1;
+    } else if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'bad') {
+      this.points -= 1;
+  }
   }
 
 
@@ -56,6 +66,13 @@ class Game{
     });  
   }
 
+  _writeScore() {
+    // Función que pinta la puntuación en el canvas
+    this.ctx.fillStyle = 'orange';
+    this.ctx.font = "20px Verdana";
+    this.ctx.fillText(`SCORE: ${this.points}`, 20, 50);
+  }
+
   _clean() {
     this.ctx.clearRect(0, 0, 400, 700);
   }
@@ -65,6 +82,7 @@ class Game{
     this._drawPana();
     this._drawEnemies();
     window.requestAnimationFrame(() => this._update());
+    this._writeScore();
   }
 
   start() {
