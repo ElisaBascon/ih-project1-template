@@ -22,7 +22,7 @@ class Game{
       currentEnemy = 0;
       clearInterval(this.enemyInterval);
       clearInterval(this.paintingEnemy);
-      // this._checkPoints();
+      this._checkPoints();
     }
   }
 
@@ -31,7 +31,7 @@ class Game{
   _checkIfGameOver() {
     // Miro los points, si < 0 = gameOver
     // LLamo la función a la de gameOver
-    if (this.points > 0) {
+    if (this.points < 0) {
       this._gameOver()
     }
   }
@@ -40,7 +40,12 @@ class Game{
     // Si cuando acabe tengo +3, siguiente nivel
     // Si tengo entre 0 y 3, vuelve a repetir
     // this._nextLevel()
-
+    if (this.points <= 2) {
+      this.start()
+    } 
+    else if (this.points >= 3) {
+      this._nextLevel()
+    }
   }
 
   // Funciones de abajo: se encargan de parar el juego y printar las pantallas de resultado
@@ -84,7 +89,7 @@ class Game{
     } else if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
     }
-    // this._checkIfGameOver()
+    this._checkIfGameOver()
   }
 
   checkLeft() {
@@ -93,7 +98,7 @@ class Game{
     } else if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
     }
-    // this._checkIfGameOver()
+    this._checkIfGameOver()
   }
 
 
