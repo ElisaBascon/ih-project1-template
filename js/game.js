@@ -1,7 +1,7 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.pana = new Player(150, 590, 110, 110);
+    this.pana = new Player(5, 200, 800, 800);
     this.enemies = enemies;
     // this.enemies = [];
     this.enemyInterval = undefined;

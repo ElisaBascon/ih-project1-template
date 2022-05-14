@@ -1,6 +1,6 @@
 //Main Player
 const pana = new Image()
-pana.src = './images/MainImage.JPG';
+pana.src = './images/Pana.png';
 
 
 //Enemies
