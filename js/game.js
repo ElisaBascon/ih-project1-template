@@ -75,9 +75,14 @@ class Game{
     canvas.style = "display: none;"
   }
 
-  _generateEnemies() {
+  _generateEnemy() {
     // Crear uno nuevo
     // Asignarle random el good o bad
+      if (Math.floor(Math.random() * 3) > 1) {
+      this.role = 'bad';
+    } else {
+      this.role = 'good';
+    }
     // Asignarle random 50 o 250 en la X para que sea izquierda o derecha
   }
 
