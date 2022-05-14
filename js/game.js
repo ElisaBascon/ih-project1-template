@@ -1,7 +1,7 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.pana = new Player(5, 200, 800, 800);
+    this.pana = new Player(-200, 200, 800, 800);
     this.enemies = enemies;
     // this.enemies = [];
     this.enemyInterval = undefined;
@@ -24,7 +24,7 @@ class Game{
       this._checkPoints();
      }
      currentEnemy++;
-    }, 1000);
+    }, 500);
   }
 
   // Se encargan de comprobar como va el usuario
@@ -97,18 +97,18 @@ class Game{
   } 
 
   checkRight() {
-    if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'good') {
+    if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-    } else if (this.paintingEnemy.x === 250 && this.paintingEnemy.role == 'bad') {
+    } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
     }
     this._checkIfGameOver()
   }
 
   checkLeft() {
-    if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'good') {
+    if (this.paintingEnemy.x === 15 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-    } else if (this.paintingEnemy.x === 50 && this.paintingEnemy.role == 'bad') {
+    } else if (this.paintingEnemy.x === 15 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
     }
     this._checkIfGameOver()
@@ -134,7 +134,7 @@ class Game{
   _writeScore() {
     // Función que pinta la puntuación en el canvas
     this.ctx.fillStyle = 'orange';
-    this.ctx.font = "20px Verdana";
+    this.ctx.font = "80px Arial, Helvetica, sans-serif;";
     this.ctx.fillText(`SCORE: ${this.points}`, 20, 50);
   }
 

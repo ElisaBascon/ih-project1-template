@@ -5,7 +5,7 @@ pana.src = './images/Pana.png';
 
 //Enemies
 const goodEnemie = new Image();
-goodEnemie.src = './images/goods.jpeg';
+goodEnemie.src = './images/Good 1.png';
 
 const badEnemie = new Image();
-badEnemie.src = './images/bads.png';
+badEnemie.src = './images/Bad 2.png';
