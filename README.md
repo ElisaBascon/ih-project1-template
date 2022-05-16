@@ -1,7 +1,8 @@
 # Game name
 
 <!-- When you finish, add a nice screenshot of your game -->
-<img src="./img/cover.png">
+<!-- <img src="./img/cover.png"> -->
+![Image text](https://github.com/ElisaBascon/ih-project1-template/blob/master/images/cover.png)
 
 ## Description
 
