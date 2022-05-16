@@ -26,8 +26,13 @@ User can see a game over page when they lose
 
 ## File structure
 
-- <code>game.js</code>: contains all the elements for the game to work. Methods: start(), \_update(), _drawPana(), _assignCurrentEnemy(), _checkIfGameOver(), _checkPoints(), _gameOver(), _nextLevel(), _generateEnemy(), _drawEnemies(), checkRight(), checkLeft(), _assignControls(), _writeScore(), _clean()
+- <code>assest.js</code>: contains the images and resources for the game
+- <code>player.js</code>: constructor for the player Pana
+- <code>enemy.js</code>: constructor for the enemies
 - <code>scripts.js</code>: contains all the DOM manipulation code to start the game
+- <code>game.js</code>: contains all the elements for the game to work. Methods: start(), \_update(), _drawPana(), _assignCurrentEnemy(), _checkIfGameOver(), _checkPoints(), _gameOver(), _nextLevel(), _generateEnemy(), _drawEnemies(), checkRight(), checkLeft(), _assignControls(), _writeScore(), _clean()
+
+
 
 ## Useful links
 
