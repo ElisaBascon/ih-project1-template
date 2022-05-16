@@ -75,16 +75,20 @@ class Game{
     canvas.style = "display: none;"
   }
 
-  _generateEnemy() {
+  /*_generateEnemy() {
     // Crear uno nuevo
     // Asignarle random el good o bad
+    const newEnemie = new this.enemies;
       if (Math.floor(Math.random() * 3) > 1) {
       this.role = 'bad';
     } else {
       this.role = 'good';
     }
     // Asignarle random 50 o 250 en la X para que sea izquierda o derecha
-  }
+    let positionRight = this.paintingEnemy.x === 175;
+    let positionLeft = this.paintingEnemy.x === 15;
+    this.paintingEnemy = position[Math.floor(Math.random() )];
+  } */
 
   _drawEnemies() {
     if (this.paintingEnemy) {
@@ -134,8 +138,8 @@ class Game{
   _writeScore() {
     // Función que pinta la puntuación en el canvas
     this.ctx.fillStyle = 'orange';
-    this.ctx.font = "80px Arial, Helvetica, sans-serif;";
-    this.ctx.fillText(`SCORE: ${this.points}`, 20, 50);
+    this.ctx.font = "40px Arial, Helvetica, sans-serif";
+    this.ctx.fillText(`SCORE: ${this.points}`, 20, 70);
   }
 
   _clean() {
