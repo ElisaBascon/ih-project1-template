@@ -5,8 +5,8 @@
 
 ## Description
 
-Game's purpose and description
-
+You are a fluffly cat that likes to eat a lot...buttakecare!
+if you eat the wrong animal...you should run to the vet!
 ## User stories MVP
 
 Minimum user stories:
