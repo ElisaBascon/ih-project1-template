@@ -1,4 +1,4 @@
-# Game name
+# PANA The Cat
 
 <!-- When you finish, add a nice screenshot of your game -->
 <!-- <img src="./img/cover.png"> -->
