@@ -111,9 +111,12 @@ class Game{
   }
 
   _drawEnemies() {
-    this.enemies.forEach(elem => {
-      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
-    })
+    if (this.paintingEnemy) {
+        this.ctx.drawImage(this.paintingEnemy.image, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
+    }
+    // this.enemies.forEach(elem => {
+    //   this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
+    // })
     // if (this.enemies.length > 0) {
     //   this.enemies.forEach(enemy => {
     //     if (enemy.role === 'bad') {
