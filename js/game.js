@@ -144,9 +144,9 @@ class Game{
   }
 
   checkLeft() {
-    if (this.paintingEnemy.x === 15 && this.paintingEnemy.role == 'good') {
+    if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-    } else if (this.paintingEnemy.x === 15 && this.paintingEnemy.role == 'bad') {
+    } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
     }
     this._checkIfGameOver()
