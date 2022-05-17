@@ -2,11 +2,11 @@ class Game{
   constructor(context) {
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
-    // this.enemies = enemies;
-    this.enemies = [];
-    this.enemyInterval = undefined;
-    this.disappearInterval = undefined;
-    // this.paintingEnemy = undefined;
+    this.enemies = enemies;
+    // this.enemies = [];
+    // this.enemyInterval = undefined;
+    // this.disappearInterval = undefined;
+    this.paintingEnemy = undefined;
     this.points = 0;
   }
 
@@ -111,15 +111,18 @@ class Game{
   }
 
   _drawEnemies() {
-    if (this.enemies.length > 0) {
-      this.enemies.forEach(enemy => {
-        if (enemy.role === 'bad') {
-          this.ctx.drawImage(enemy.image,187,155,500,450, enemy.x, enemy.y, enemy.width, enemy.height);
-        } else {
-          this.ctx.drawImage(enemy.image,104,61,800,800, enemy.x, enemy.y, enemy.width, enemy.height);
-        }
-      });
-    }
+    this.enemies.forEach(elem => {
+      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
+    })
+    // if (this.enemies.length > 0) {
+    //   this.enemies.forEach(enemy => {
+    //     if (enemy.role === 'bad') {
+    //       this.ctx.drawImage(enemy.image,187,155,500,450, enemy.x, enemy.y, enemy.width, enemy.height);
+    //     } else {
+    //       this.ctx.drawImage(enemy.image,104,61,800,800, enemy.x, enemy.y, enemy.width, enemy.height);
+    //     }
+    //   });
+    // }
     //   if (this.paintingEnemy.role == 'bad') {
     //         this.ctx.drawImage(badEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
     //       } else if (enemies[0].role == 'good') {
@@ -184,13 +187,13 @@ class Game{
 
   start() {
     this._assignControls();
-    // this._assignCurrentEnemy();
-    this.enemyInterval = setInterval(() => {
-      this._generateEnemy();
-    }, 500);
-    this.disappearInterval = setInterval(() => {
-      this._deleteEnemy();
-     }, 600);
+    this._assignCurrentEnemy();
+    // this.enemyInterval = setInterval(() => {
+    //   this._generateEnemy();
+    // }, 500);
+    // this.disappearInterval = setInterval(() => {
+    //   this._deleteEnemy();
+    //  }, 600);
     this._update();
   }
 }

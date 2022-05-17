@@ -1,5 +1,5 @@
 const enemies = [
-  new Enemy(15, 100, 220, 220, 'good'),
+  new Enemy(15, 100, 220, 220, 'good', goodEnemyImages(Math.floor(Math.random() * goodEnemyImages.length))),
   new Enemy(175, 100, 220, 220, 'good'),
   new Enemy(15, 100, 220, 220, 'good'),
   new Enemy(175, 100, 220, 220, 'bad'),
