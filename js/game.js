@@ -2,10 +2,11 @@ class Game{
   constructor(context) {
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
-    this.enemies = enemies;
-    // this.enemies = [];
+    // this.enemies = enemies;
+    this.enemies = [];
     this.enemyInterval = undefined;
-    this.paintingEnemy = undefined;
+    this.disappearInterval = undefined;
+    // this.paintingEnemy = undefined;
     this.points = 0;
   }
 
@@ -75,29 +76,56 @@ class Game{
     canvas.style = "display: none;"
   }
 
-  /*_generateEnemy() {
-    // Crear uno nuevo
-    // Asignarle random el good o bad
-    const newEnemie = new this.enemies;
-      if (Math.floor(Math.random() * 3) > 1) {
-      this.role = 'bad';
+  _generateEnemy() {
+    let role;
+    let side;
+    let image;
+
+    const sideAssigned = Math.random();
+    if (sideAssigned > 0.50) {
+      side = -15;
     } else {
-      this.role = 'good';
+      side = 165;
     }
-    // Asignarle random 50 o 250 en la X para que sea izquierda o derecha
-    let positionRight = this.paintingEnemy.x === 175;
-    let positionLeft = this.paintingEnemy.x === 15;
-    this.paintingEnemy = position[Math.floor(Math.random() )];
-  } */
+
+    const roleAssigned = Math.random();
+    if (roleAssigned > 0.60) {
+      role = 'bad';
+    } else {
+      role = 'good';
+    }
+
+    if (role === 'good') {
+      image = goodEnemyImages[Math.floor(Math.random() * goodEnemyImages.length)];
+    } else {
+      image = badEnemyImages[Math.floor(Math.random() * badEnemyImages.length)];
+    }
+
+    const newEnemie = new Enemy(side, 100, 220, 220, role, image);
+    this.enemies.push(newEnemie);
+    console.log(newEnemie)
+  } 
+
+  _deleteEnemy() {
+    this.enemies.splice(0,1);
+  }
 
   _drawEnemies() {
-    if (this.paintingEnemy) {
-      if (this.paintingEnemy.role == 'bad') {
-            this.ctx.drawImage(badEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
-          } else if (enemies[0].role == 'good') {
-            this.ctx.drawImage(goodEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
-          }
+    if (this.enemies.length > 0) {
+      this.enemies.forEach(enemy => {
+        if (enemy.role === 'bad') {
+          this.ctx.drawImage(enemy.image,187,155,500,450, enemy.x, enemy.y, enemy.width, enemy.height);
+        } else {
+          this.ctx.drawImage(enemy.image,104,61,800,800, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
+      });
     }
+    //   if (this.paintingEnemy.role == 'bad') {
+    //         this.ctx.drawImage(badEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
+    //       } else if (enemies[0].role == 'good') {
+    //         this.ctx.drawImage(goodEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
+    //       }
+    // }
   } 
 
   checkRight() {
@@ -150,14 +178,19 @@ class Game{
     this._clean();
     this._drawPana();
     this._drawEnemies();
-    window.requestAnimationFrame(() => this._update());
     this._writeScore();
+    window.requestAnimationFrame(() => this._update());
   }
 
   start() {
     this._assignControls();
-    this._assignCurrentEnemy();
-    // LLamo a un set interval que cada X tiempo me genere un nuevo enemigo 
+    // this._assignCurrentEnemy();
+    this.enemyInterval = setInterval(() => {
+      this._generateEnemy();
+    }, 500);
+    this.disappearInterval = setInterval(() => {
+      this._deleteEnemy();
+     }, 600);
     this._update();
   }
 }
