@@ -10,15 +10,15 @@ You are a fluffly cat that likes to eat a lot...buttakecare!
 if you eat the wrong animal...you should run to the vet!
 ## User stories MVP
 
-Minimum user stories:
 
-User can hit play button and see the game screen
-User can press right and left arrows to eat enemies
-User can increase their score when they eat good enemies
-User can decrease their score when they eat bad enemies
-User can see the scoring board on screen
-User can see a next level page when they gain enougth points
-User can see a game over page when they lose
+
+- User can hit play button and see the game screen
+- User can press right and left arrows to eat enemies
+- User can increase their score when they eat good enemies
+- User can decrease their score when they eat bad enemies
+- User can see the scoring board on screen
+- User can see a next level page when they gain enougth points
+- User can see a game over page when they lose
 
 ## User stories Backlog
 
