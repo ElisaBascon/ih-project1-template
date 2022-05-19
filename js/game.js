@@ -3,7 +3,7 @@ class Game{
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
     this.enemies = enemies;
-    this.colision = new Colision(80, 100, 300, 300);
+    this.colision = new Colision(40, 100, 300, 300);
     this.paintingEnemy = undefined;
     this.points = 0;
   }
@@ -52,7 +52,6 @@ class Game{
   }
 
   _nextLevel() {
-    console.log('next level')
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
     const nextLevel = document.getElementById('next-level');
@@ -71,13 +70,19 @@ class Game{
     }
   } 
 
+  _drawColision() {
+    if (this.checkRight === true) {
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
+    } else if (this.checkLeft === true) {
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
+    }
+  } 
+
   checkRight() {
     if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     }
     this._checkIfGameOver()
   }
@@ -85,10 +90,8 @@ class Game{
   checkLeft() {
     if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     }
     this._checkIfGameOver()
   }
@@ -123,6 +126,7 @@ class Game{
     this._clean();
     this._drawPana();
     this._drawEnemies();
+    this._drawColision();
     this._writeScore();
     window.requestAnimationFrame(() => this._update());
   }
