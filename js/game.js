@@ -3,9 +3,7 @@ class Game{
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
     this.enemies = enemies;
-    // this.enemies = [];
-    // this.enemyInterval = undefined;
-    // this.disappearInterval = undefined;
+    this.colision = new Colision(80, 100, 300, 300);
     this.paintingEnemy = undefined;
     this.points = 0;
   }
@@ -28,20 +26,14 @@ class Game{
     }, 500);
   }
 
-  // Se encargan de comprobar como va el usuario
 
   _checkIfGameOver() {
-    // Miro los points, si < 0 = gameOver
-    // LLamo la función a la de gameOver
     if (this.points < 0) {
       this._gameOver()
     }
   }
 
   _checkPoints() {
-    // Si cuando acabe tengo +3, siguiente nivel
-    // Si tengo entre 0 y 3, vuelve a repetir
-    // this._nextLevel()
     if (this.points <= 2) {
       this.start()
     } 
@@ -50,11 +42,7 @@ class Game{
     }
   }
 
-  // Funciones de abajo: se encargan de parar el juego y printar las pantallas de resultado
-
   _gameOver() {
-    // Para todos los intervals
-    // Pinta pantalla de game over
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
     const losePage = document.getElementById('lose-page');
@@ -64,9 +52,6 @@ class Game{
   }
 
   _nextLevel() {
-    // Creas otra en HTML que sea de buen resultado
-    // Paro todos los intervals
-    // Pinto la pantalla
     console.log('next level')
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
@@ -76,36 +61,6 @@ class Game{
     canvas.style = "display: none;"
   }
 
-  _generateEnemy() {
-    let role;
-    let side;
-    let image;
-
-    const sideAssigned = Math.random();
-    if (sideAssigned > 0.50) {
-      side = -15;
-    } else {
-      side = 165;
-    }
-
-    const roleAssigned = Math.random();
-    if (roleAssigned > 0.60) {
-      role = 'bad';
-    } else {
-      role = 'good';
-    }
-
-    if (role === 'good') {
-      image = goodEnemyImages[Math.floor(Math.random() * goodEnemyImages.length)];
-    } else {
-      image = badEnemyImages[Math.floor(Math.random() * badEnemyImages.length)];
-    }
-
-    const newEnemie = new Enemy(side, 100, 220, 220, role, image);
-    this.enemies.push(newEnemie);
-    console.log(newEnemie)
-  } 
-
   _deleteEnemy() {
     this.enemies.splice(0,1);
   }
@@ -114,31 +69,15 @@ class Game{
     if (this.paintingEnemy) {
         this.ctx.drawImage(this.paintingEnemy.image, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
     }
-    // this.enemies.forEach(elem => {
-    //   this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
-    // })
-    // if (this.enemies.length > 0) {
-    //   this.enemies.forEach(enemy => {
-    //     if (enemy.role === 'bad') {
-    //       this.ctx.drawImage(enemy.image,187,155,500,450, enemy.x, enemy.y, enemy.width, enemy.height);
-    //     } else {
-    //       this.ctx.drawImage(enemy.image,104,61,800,800, enemy.x, enemy.y, enemy.width, enemy.height);
-    //     }
-    //   });
-    // }
-    //   if (this.paintingEnemy.role == 'bad') {
-    //         this.ctx.drawImage(badEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
-    //       } else if (enemies[0].role == 'good') {
-    //         this.ctx.drawImage(goodEnemie, this.paintingEnemy.x, this.paintingEnemy.y, this.paintingEnemy.width, this.paintingEnemy.height);
-    //       }
-    // }
   } 
 
   checkRight() {
     if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'good') {
       this.points += 1;
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     }
     this._checkIfGameOver()
   }
@@ -146,15 +85,16 @@ class Game{
   checkLeft() {
     if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'good') {
       this.points += 1;
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
     }
     this._checkIfGameOver()
   }
 
 
   _assignControls() {
-    // Controles del teclado
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
@@ -170,7 +110,6 @@ class Game{
   }
 
   _writeScore() {
-    // Función que pinta la puntuación en el canvas
     this.ctx.fillStyle = 'orange';
     this.ctx.font = "40px Arial, Helvetica, sans-serif";
     this.ctx.fillText(`SCORE: ${this.points}`, 20, 70);
@@ -191,12 +130,6 @@ class Game{
   start() {
     this._assignControls();
     this._assignCurrentEnemy();
-    // this.enemyInterval = setInterval(() => {
-    //   this._generateEnemy();
-    // }, 500);
-    // this.disappearInterval = setInterval(() => {
-    //   this._deleteEnemy();
-    //  }, 600);
     this._update();
   }
 }
