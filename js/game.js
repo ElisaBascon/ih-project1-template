@@ -3,9 +3,11 @@ class Game{
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
     this.enemies = enemies;
-    this.colision = new Colision(40, 100, 300, 300);
+    //this.colision = new Colision(40, 100, 300, 300);
+    this.colision = undefined;
     this.paintingEnemy = undefined;
     this.points = 0;
+    // this.sound = new sound('sounds/sound.mp3')
   }
 
   _drawPana() {
@@ -23,7 +25,7 @@ class Game{
       this._checkPoints();
      }
      currentEnemy++;
-    }, 500);
+    }, 1000);
   }
 
 
@@ -71,18 +73,30 @@ class Game{
   } 
 
   _drawColision() {
-    if (this.checkRight === true) {
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
-    } else if (this.checkLeft === true) {
-      this.ctx.drawImage(colision, this.colision.x, this.colision.y, this.colision.width, this.colision.height);
+    if (this.colision !== undefined) {
+      if (this.colision === 'right') {
+        this.ctx.drawImage(colision, 290, 100, 100, 100);
+      }
+      if (this.colision === 'left') {
+        this.ctx.drawImage(colision, 10, 100, 100, 100);
+      }
     }
-  } 
+  }
 
   checkRight() {
     if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'good') {
       this.points += 1;
+      // this.sound.play();
+      this.colision = 'right';
+      setTimeout(() => {
+        this.colision = undefined;
+      },1000)
     } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.colision = 'right';
+      setTimeout(() => {
+        this.colision = undefined;
+      },1000)
     }
     this._checkIfGameOver()
   }
@@ -90,8 +104,16 @@ class Game{
   checkLeft() {
     if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'good') {
       this.points += 1;
+      this.colision = 'left';
+      setTimeout(() => {
+        this.colision = undefined;
+      },500)
     } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.colision = 'left';
+      setTimeout(() => {
+        this.colision = undefined;
+      },500)
     }
     this._checkIfGameOver()
   }
