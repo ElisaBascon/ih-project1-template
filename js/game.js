@@ -3,11 +3,12 @@ class Game{
     this.ctx = context;
     this.pana = new Player(-200, 200, 800, 800);
     this.enemies = enemies;
-    //this.colision = new Colision(40, 100, 300, 300);
     this.colision = undefined;
     this.paintingEnemy = undefined;
     this.points = 0;
-    // this.sound = new sound('sounds/sound.mp3')
+    this.eatSound = new sound('./sound/sound.m4a')
+    this.burpSound = new sound('./sound/Burp.mp3')
+    this.chestSound = new sound('./sound/Chest.mp4')
   }
 
   _drawPana() {
@@ -47,6 +48,7 @@ class Game{
   _gameOver() {
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
+    this.burpSound.play();
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
@@ -56,6 +58,7 @@ class Game{
   _nextLevel() {
     clearInterval(this.enemyInterval);
     clearInterval(this.paintingEnemy);
+    this.chestSound.play();
     const nextLevel = document.getElementById('next-level');
     nextLevel.style = "display: flex";
     const canvas = document.getElementById('canvas');
@@ -86,13 +89,14 @@ class Game{
   checkRight() {
     if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'good') {
       this.points += 1;
-      // this.sound.play();
+      this.eatSound.play();
       this.colision = 'right';
       setTimeout(() => {
         this.colision = undefined;
       },350)
     } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.eatSound.play();
       this.colision = 'right';
       setTimeout(() => {
         this.colision = undefined;
@@ -104,12 +108,14 @@ class Game{
   checkLeft() {
     if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'good') {
       this.points += 1;
+      this.eatSound.play();
       this.colision = 'left';
       setTimeout(() => {
         this.colision = undefined;
       },350)
     } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
+      this.eatSound.play();
       this.colision = 'left';
       setTimeout(() => {
         this.colision = undefined;
