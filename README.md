@@ -39,4 +39,4 @@ if you eat the wrong animal...you should run to the vet!
 <!-- When you finish, add these links and commit -->
 
 - [Presentation slides]()
-- [Deployed game]()
+- [Deployed game](https://elisabascon.github.io/ih-project1-template/)
