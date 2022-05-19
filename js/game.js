@@ -25,7 +25,7 @@ class Game{
       this._checkPoints();
      }
      currentEnemy++;
-    }, 1000);
+    }, 650);
   }
 
 
@@ -90,13 +90,13 @@ class Game{
       this.colision = 'right';
       setTimeout(() => {
         this.colision = undefined;
-      },1000)
+      },350)
     } else if (this.paintingEnemy.x === 175 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
       this.colision = 'right';
       setTimeout(() => {
         this.colision = undefined;
-      },1000)
+      },350)
     }
     this._checkIfGameOver()
   }
@@ -107,13 +107,13 @@ class Game{
       this.colision = 'left';
       setTimeout(() => {
         this.colision = undefined;
-      },500)
+      },350)
     } else if (this.paintingEnemy.x === 10 && this.paintingEnemy.role == 'bad') {
       this.points -= 1;
       this.colision = 'left';
       setTimeout(() => {
         this.colision = undefined;
-      },500)
+      },350)
     }
     this._checkIfGameOver()
   }
@@ -136,7 +136,7 @@ class Game{
 
   _writeScore() {
     this.ctx.fillStyle = 'orange';
-    this.ctx.font = "40px Arial, Helvetica, sans-serif";
+    this.ctx.font = "bolder 40px Arial, Helvetica, sans-serif";
     this.ctx.fillText(`SCORE: ${this.points}`, 20, 70);
   }
 
